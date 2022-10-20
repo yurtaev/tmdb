@@ -10,8 +10,8 @@ class Movies: GraphQLObject {
         self.viewerContext = viewerContext
     }
 
-    func search(term: String) -> EventLoopFuture<Movie.Connection>  {
-        return viewerContext.movies(at: "search", "movie", query: ["query" : term])
+    func search(term: String, year: String? = "") -> EventLoopFuture<Movie.Connection>  {
+        return viewerContext.movies(at: "search", "movie", query: ["query" : term, "year": year ?? "" ])
     }
 
     func trending(timeWindow: TimeWindow = .day) -> EventLoopFuture<Movie.Connection> {
